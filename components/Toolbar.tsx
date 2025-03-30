@@ -1,18 +1,17 @@
 'use client';
 import useUserSession from '@/hooks/useUserSession';
 import { signInWithGoogle, signOut } from '@/lib/auth.js';
+import { User } from 'firebase/auth';
 import Image from 'next/image';
 
-export default function Toolbar({ initialUser }) {
+export default function Toolbar({ initialUser }: { initialUser: User | undefined }) {
   const user = useUserSession(initialUser);
 
-  const handleSignOut = (event) => {
-    event.preventDefault();
+  const handleSignOut = () => {
     signOut();
   };
 
-  const handleSignIn = async (event) => {
-    event.preventDefault();
+  const handleSignIn = async () => {
     await signInWithGoogle();
     window.location.reload();
   };
@@ -22,9 +21,8 @@ export default function Toolbar({ initialUser }) {
       <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex items-center justify-between h-16'>
           <div className='flex-shrink-0 font-bold text-lg'>
-          serverApp & Next.js SSR
+            serverApp & Next.js SSR
           </div>
-
 
           <div className='flex items-center'>
             {user ? (

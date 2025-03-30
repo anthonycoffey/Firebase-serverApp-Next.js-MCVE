@@ -5,8 +5,9 @@ import {
 } from "@/lib/auth.js";
 import { useRouter } from "next/navigation";
 import { firebaseConfig } from "@/lib/config";
+import { User } from "firebase/auth";
 
-export default function useUserSession(initialUser) {
+export default function useUserSession(initialUser: User | undefined) {
 	// The initialUser comes from the server via a server component
 	const [user, setUser] = useState(initialUser);
 	const router = useRouter();
@@ -25,16 +26,16 @@ export default function useUserSession(initialUser) {
 	  }, []);
 
 	useEffect(() => {
-		const unsubscribe = onAuthStateChanged((authUser) => {
-			setUser(authUser)
-		})
+    const unsubscribe: () => void = onAuthStateChanged((authUser: User | undefined) => {
+      setUser(authUser)
+    })
 
 		return () => unsubscribe()
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
-		onAuthStateChanged((authUser) => {
+		onAuthStateChanged((authUser: User | undefined) => {
 			if (user === undefined) return
 
 			// refresh when user changed to ease testing

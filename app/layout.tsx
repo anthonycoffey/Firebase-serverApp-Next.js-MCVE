@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Toolbar from "@/components/Toolbar";
 import { getAuthenticatedAppForUser } from "@/lib/serverApp";
+import { User } from "firebase/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -33,7 +34,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toolbar initialUser={currentUser?.toJSON()}/>
+        <Toolbar initialUser={currentUser?.toJSON() as User}/>
         {children}
       </body>
     </html>
