@@ -18,3 +18,16 @@ env:
     secret: NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID
   - variable: NEXT_PUBLIC_FIREBASE_APP_ID
     secret: NEXT_PUBLIC_FIREBASE_APP_ID
+
+# App Hosting configuration
+source: .
+ignore:
+  - '**/.*'
+  - '**/node_modules/**'
+
+# Pre-deploy steps
+hooks:
+  prebuild: npm run prebuild
+
+# Region configuration
+region: us-central1
