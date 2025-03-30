@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "npm run build-service-worker && next dev --turbopack",
-    "build": "npm run build-service-worker && next build",
+    "prebuild": "npm run build-service-worker",
+    "build": "next build",
     "build-service-worker": "npx esbuild auth-service-worker.js --bundle --outfile=public/auth-service-worker.js",
     "start": "next start",
     "lint": "next lint"
