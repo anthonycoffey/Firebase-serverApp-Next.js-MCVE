@@ -4,7 +4,7 @@ export default function Home() {
       <h2 className='text-2xl font-bold text-center sm:text-left mb-4'>
         Firebase serverApp & Next.js SSR
       </h2>
-      <p className='text-lg text-gray-600 text-center sm:text-left dark:text-gray-400'>
+      <div className='text-lg text-gray-600 text-center sm:text-left dark:text-gray-400'>
         <ol className='list-decimal list-inside space-y-2 text-left'>
           <li>Sign in using Google</li>
           <li>
@@ -12,7 +12,7 @@ export default function Home() {
             trigger error.
           </li>
         </ol>
-      </p>
+      </div>
     </main>
   );
 }
